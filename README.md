@@ -1,1 +1,8 @@
-a code to give us the optimized codon for our desired protein
+A code to provide optimized codons for our desired protein (it learns a template based on the training dataset, so if you feed the algorithm sequences with high GC content, it will predict codons with high GC content).
+
+- The entire structure of this algorithm is based on the "Attention Is All You Need" paper.
+- There is no need to build a tokenizing structure; the pretrained token files have already been prepared. Simply save them in your desired directory and set the path in the path_amino and path_dna variables (in step 2).
+- A sample file containing amino acids and their corresponding codons has been prepared (for some proteins in Oryza sativa) and is named sequence.txt and sequence.fasta.
+- In the error analysis section, the length of these samples is divided into four quartiles to check whether errors are evenly distributed or concentrated in a specific part. A heatmap is also provided to show the percentage of correctly predicted codons (normalized over the true labels). The recall, precision, and F1-score are provided in a table.
+- In the inference stage (step 10), the path_infer parameter is the address of the FASTA file of your amino acid sequences specified in step 2. It predicts the sequence based on the training dataset template and provides additional useful information, such as GC content and the percentage of selected codons for each amino acid.
+- In codon and amino acid dependency (step 11), the final dimensions of the embedding values for each amino acid and codon are reduced using the UMAP technique, and then K-means clustering is applied to group them. This approach could help identify a template, rule, or biological explanation for why some codons cluster together more closely than others.
